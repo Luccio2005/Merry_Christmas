@@ -1,0 +1,337 @@
+package Main;
+
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
+public class Teclado implements KeyListener{
+    Panel_de_Juego gp;
+    public boolean arribap, abajop, izquierdap, derechap, enterp, disparop;
+    boolean checkDrawTime = false;
+
+    public Teclado(Panel_de_Juego gp){
+        this.gp = gp;
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {}
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        int codigo = e.getKeyCode();
+        // pantalla de inicio
+        if(gp.estadodeljuego == gp.pantalladeinicio){
+            pantalladeinicio(codigo);
+        }
+        //reanudar
+        else if(gp.estadodeljuego == gp.reanudar){
+            reanudar(codigo);
+        }
+        //pausar
+        else if(gp.estadodeljuego == gp.pausar){
+            pausar(codigo);
+        }
+        //dialogo
+        else if(gp.estadodeljuego == gp.dialogo){
+            dialogo(codigo);
+        }
+        // estado de personaje
+        else if(gp.estadodeljuego == gp.estadodepersonaje){
+            estadodepersonaje(codigo);
+        }
+        // estado de opciones
+        else if(gp.estadodeljuego == gp.estadodeopciones){
+            estadodeopciones(codigo);
+        }
+        // estado game over
+        else if(gp.estadodeljuego == gp.estadogameover){
+            estadogameover(codigo);
+        }
+        // estado intercambio
+        else if(gp.estadodeljuego == gp.estadointercambio){
+            estadointercambio(codigo);
+        }
+        // estado de mapa
+        else if(gp.estadodeljuego == gp.estadomapa){
+            estadomapa(codigo);
+        }
+    }
+    public void pantalladeinicio(int codigo){
+        if(codigo == KeyEvent.VK_W){
+            gp.ui.numerodecomando--;
+            if(gp.ui.numerodecomando <0){
+                gp.ui.numerodecomando = 2;
+            }
+        }
+        if(codigo == KeyEvent.VK_S){
+            gp.ui.numerodecomando++;
+            if(gp.ui.numerodecomando >2){
+                gp.ui.numerodecomando =0;
+            }
+        }
+        if(codigo == KeyEvent.VK_ENTER){
+            if(gp.ui.numerodecomando ==0){
+                gp.estadodeljuego = gp.reanudar;
+                gp.playMusic(0);
+            }
+            if(gp.ui.numerodecomando ==1){
+
+            }
+            if(gp.ui.numerodecomando ==2){
+                System.exit(0);
+            }
+        }
+    }
+    public void reanudar(int codigo){
+        if(codigo == KeyEvent.VK_W){
+            arribap = true;
+        }
+        if(codigo == KeyEvent.VK_S){
+            abajop = true;
+        }
+        if(codigo == KeyEvent.VK_A){
+            izquierdap = true;
+        }
+        if(codigo == KeyEvent.VK_D){
+            derechap = true;
+        }
+        if(codigo == KeyEvent.VK_P){
+            gp.estadodeljuego = gp.pausar;
+        }
+        if(codigo == KeyEvent.VK_C){
+            gp.estadodeljuego = gp.estadodepersonaje;
+        }
+        if(codigo == KeyEvent.VK_ENTER){
+            enterp = true;
+        }
+        if(codigo == KeyEvent.VK_F){
+            disparop = true;
+        }
+        if(codigo == KeyEvent.VK_ESCAPE){
+            gp.estadodeljuego = gp.estadodeopciones;
+        }
+        if(codigo == KeyEvent.VK_M){
+            gp.estadodeljuego = gp.estadomapa;
+        }
+        if(codigo == KeyEvent.VK_X){
+            if(gp.mapa.minimapaon == false){
+                gp.mapa.minimapaon = true;
+            }else{
+                gp.mapa.minimapaon = false;
+            }
+        }
+        if(codigo == KeyEvent.VK_R){
+            switch (gp.actualmapa){
+                case 0: gp.sueloM.cargarMapa("/mapas/worldV2.txt", 0); break;
+                case 1: gp.sueloM.cargarMapa("/mapas/interior01.txt", 1); break;
+            }
+        }
+    }
+    public void pausar(int codigo){
+        if(codigo == KeyEvent.VK_P){
+            gp.estadodeljuego = gp.reanudar;
+        }
+    }
+    public void dialogo(int codigo){
+        if(codigo == KeyEvent.VK_ENTER){
+            gp.estadodeljuego = gp.reanudar;
+        }
+    }
+    public void estadodepersonaje(int codigo){
+        if(codigo == KeyEvent.VK_C){
+            gp.estadodeljuego = gp.reanudar;
+        }
+        if(codigo == KeyEvent.VK_ENTER){
+            gp.jugador.seleccionaritem();
+        }
+        inventariojugador(codigo);
+    }
+    public void estadodeopciones(int codigo){
+        if(codigo == KeyEvent.VK_ESCAPE){
+            gp.estadodeljuego = gp.reanudar;
+        }
+        if(codigo == KeyEvent.VK_ENTER){
+            enterp = true;
+        }
+        int numerodecomandomax = 0;
+        switch (gp.ui.substate){
+            case 0: numerodecomandomax = 5; break;
+            case 3: numerodecomandomax = 1; break;
+        }
+        if(codigo == KeyEvent.VK_W){
+            gp.ui.numerodecomando--;
+            gp.playSE(9);
+            if(gp.ui.numerodecomando < 0){
+                gp.ui.numerodecomando = numerodecomandomax;
+            }
+        }
+        if(codigo == KeyEvent.VK_S){
+            gp.ui.numerodecomando++;
+            gp.playSE(9);
+            if(gp.ui.numerodecomando > numerodecomandomax){
+                gp.ui.numerodecomando = 0;
+            }
+        }
+        if (codigo == KeyEvent.VK_A) {
+            if(gp.ui.substate == 0){
+                if(gp.ui.numerodecomando == 1 && gp.musica.escalavolumen > 0){
+                    gp.musica.escalavolumen--;
+                    gp.musica.comprobarvolumen();
+                    gp.playSE(9);
+                }
+                if(gp.ui.numerodecomando == 2 && gp.se.escalavolumen > 0){
+                    gp.se.escalavolumen--;
+                    gp.playSE(9);
+                }
+            }
+        }
+        if(codigo == KeyEvent.VK_D){
+            if(gp.ui.substate == 0){
+                if(gp.ui.numerodecomando == 1 && gp.musica.escalavolumen < 5){
+                    gp.musica.escalavolumen++;
+                    gp.musica.comprobarvolumen();
+                    gp.playSE(9);
+                }
+                if(gp.ui.numerodecomando == 2 && gp.se.escalavolumen < 5){
+                    gp.se.escalavolumen++;
+                    gp.playSE(9);
+                }
+            }
+        }}
+    public void estadogameover(int codigo){
+        if(codigo == KeyEvent.VK_W){
+            gp.ui.numerodecomando--;
+            if(gp.ui.numerodecomando < 0){
+                gp.ui.numerodecomando = 1;
+            }
+            gp.playSE(9);
+        }
+        if(codigo == KeyEvent.VK_S){
+            gp.ui.numerodecomando++;
+            if(gp.ui.numerodecomando > 1){
+                gp.ui.numerodecomando = 0;
+            }
+            gp.playSE(9);
+        }
+        if(codigo == KeyEvent.VK_ENTER){
+            if(gp.ui.numerodecomando == 0){
+                gp.estadodeljuego = gp.reanudar;
+                gp.retry();
+                gp.playMusic(0);
+            }
+            else if(gp.ui.numerodecomando == 1){
+                gp.estadodeljuego = gp.pantalladeinicio;
+                gp.restart();
+            }
+        }
+    }
+    public void estadointercambio(int codigo){
+        if(codigo == KeyEvent.VK_ENTER){
+            enterp = true;
+        }
+        if(gp.ui.substate == 0){
+            if(codigo == KeyEvent.VK_W){
+                gp.ui.numerodecomando--;
+                if(gp.ui.numerodecomando < 0){
+                    gp.ui.numerodecomando = 2;
+                }
+                gp.playSE(9);
+            }
+            if(codigo == KeyEvent.VK_S){
+                gp.ui.numerodecomando++;
+                if(gp.ui.numerodecomando > 2){
+                    gp.ui.numerodecomando = 0;
+                }
+                gp.playSE(9);
+            }
+        }
+        if(gp.ui.substate == 1){
+            inventarionpc(codigo);
+            if(codigo == KeyEvent.VK_ESCAPE){
+                gp.ui.substate = 0;
+            }
+        }
+        if(gp.ui.substate == 2){
+            inventariojugador(codigo);
+            if(codigo == KeyEvent.VK_ESCAPE){
+                gp.ui.substate = 0;
+            }
+        }
+    }
+    public void estadomapa(int codigo){
+        if(codigo == KeyEvent.VK_M){
+            gp.estadodeljuego = gp.reanudar;
+        }
+    }
+    public void inventariojugador(int codigo){
+        if(codigo == KeyEvent.VK_W){
+            if(gp.ui.jugadorranurafila !=0){
+                gp.ui.jugadorranurafila--;
+                gp.playSE(9);
+            }
+        }
+        if(codigo == KeyEvent.VK_A){
+            if(gp.ui.jugadorranuracol !=0){
+                gp.ui.jugadorranuracol--;
+                gp.playSE(9);
+            }
+        }
+        if(codigo == KeyEvent.VK_S){
+            if(gp.ui.jugadorranurafila !=3){
+                gp.ui.jugadorranurafila++;
+                gp.playSE(9);
+            }
+        }
+        if(codigo == KeyEvent.VK_D){
+            if(gp.ui.jugadorranuracol !=4){
+                gp.ui.jugadorranuracol++;
+                gp.playSE(9);
+            }
+        }
+    }
+    public void inventarionpc(int codigo){
+        if(codigo == KeyEvent.VK_W){
+            if(gp.ui.npcranurafila !=0){
+                gp.ui.npcranurafila--;
+                gp.playSE(9);
+            }
+        }
+        if(codigo == KeyEvent.VK_A){
+            if(gp.ui.npcranuracol !=0){
+                gp.ui.npcranuracol--;
+                gp.playSE(9);
+            }
+        }
+        if(codigo == KeyEvent.VK_S){
+            if(gp.ui.npcranurafila !=3){
+                gp.ui.npcranurafila++;
+                gp.playSE(9);
+            }
+        }
+        if(codigo == KeyEvent.VK_D){
+            if(gp.ui.npcranuracol !=4){
+                gp.ui.npcranuracol++;
+                gp.playSE(9);
+            }
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        int codigo = e.getKeyCode();
+        if(codigo == KeyEvent.VK_W){
+            arribap = false;
+        }
+        if(codigo == KeyEvent.VK_S){
+            abajop = false;
+        }
+        if(codigo == KeyEvent.VK_A){
+            izquierdap = false;
+        }
+        if(codigo == KeyEvent.VK_D){
+            derechap = false;
+        }
+        if(codigo == KeyEvent.VK_F){
+            disparop = false;
+        }
+    }
+}
