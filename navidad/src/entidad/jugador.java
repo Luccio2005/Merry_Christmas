@@ -26,14 +26,14 @@ public class jugador extends entidad{
     }
     public void getPlayerImage(){
         try{
-            up1 = ImageIO.read(getClass().getResourceAsStream("/jugador/ann-1.png"));
-            up2 = ImageIO.read(getClass().getResourceAsStream("/jugador/ann-1.png"));
-            down1 = ImageIO.read(getClass().getResourceAsStream("/jugador/ann-1.png"));
-            down2 = ImageIO.read(getClass().getResourceAsStream("/jugador/ann-1.png"));
-            left1 = ImageIO.read(getClass().getResourceAsStream("/jugador/ann-1.png"));
-            left2 = ImageIO.read(getClass().getResourceAsStream("/jugador/ann-1.png"));
-            right1 = ImageIO.read(getClass().getResourceAsStream("/jugador/ann-1.png"));
-            right2 = ImageIO.read(getClass().getResourceAsStream("/jugador/ann-1.png"));
+            up1 = ImageIO.read(getClass().getResourceAsStream("/jugador/player-3.png"));
+            up2 = ImageIO.read(getClass().getResourceAsStream("/jugador/player-4.png"));
+            down1 = ImageIO.read(getClass().getResourceAsStream("/jugador/player-1.png"));
+            down2 = ImageIO.read(getClass().getResourceAsStream("/jugador/player-2.png"));
+            left1 = ImageIO.read(getClass().getResourceAsStream("/jugador/player-5.png"));
+            left2 = ImageIO.read(getClass().getResourceAsStream("/jugador/player-6.png"));
+            right1 = ImageIO.read(getClass().getResourceAsStream("/jugador/player-7.png"));
+            right2 = ImageIO.read(getClass().getResourceAsStream("/jugador/player-8.png"));
         }catch (IOException e){
             e.printStackTrace();
         }
