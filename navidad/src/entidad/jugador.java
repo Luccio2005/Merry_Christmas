@@ -40,34 +40,63 @@ public class jugador extends entidad{
 
     }
     public void actualizar(){
-        if(keyH.arribap == true){
-            direccion = "up";
-            y -= velocidad;
-        }else if(keyH.abajop == true){
-            direccion = "down";
-            y += velocidad;
-        }else if(keyH.izquierdap == true){
-            direccion = "left";
-            x -= velocidad;
-        }else if(keyH.derechap == true){
-            direccion = "right";
-            x += velocidad;
+        if(keyH.arribap == true || keyH.abajop == true ||
+        keyH.izquierdap == true || keyH.derechap == true){
+            if(keyH.arribap == true){
+                direccion = "up";
+                y -= velocidad;
+            }else if(keyH.abajop == true){
+                direccion = "down";
+                y += velocidad;
+            }else if(keyH.izquierdap == true){
+                direccion = "left";
+                x -= velocidad;
+            }else if(keyH.derechap == true){
+                direccion = "right";
+                x += velocidad;
+            }
+            contadorSprite++;
+            if(contadorSprite > 12){
+                if(numeroSprite == 1){
+                    numeroSprite = 2;
+                }else if(numeroSprite == 2){
+                    numeroSprite = 1;
+                }
+                contadorSprite = 0;
+            }
         }
+
     }
     public void dibujar(Graphics2D g2){
         BufferedImage imagen=null;
         switch (direccion){
             case "up":
-                imagen = up1;
+                if(numeroSprite ==1){
+                    imagen = up1;
+                }if(numeroSprite ==2){
+                imagen = up2;
+            }
                 break;
             case "down":
-                imagen = down1;
+                if(numeroSprite ==1){
+                    imagen = down1;
+                }if(numeroSprite ==2) {
+                imagen = down2;
+            }
                 break;
             case "left":
-                imagen = left1;
+                if(numeroSprite ==1){
+                    imagen = left1;
+                }if(numeroSprite ==2){
+                imagen = left2;
+            }
                 break;
             case "right":
-                imagen = right1;
+                if(numeroSprite ==1){
+                    imagen = right1;
+                }if(numeroSprite ==2){
+                imagen = right2;
+            }
                 break;
         }
         g2.drawImage(imagen, x, y, gp.tileSize, gp.tileSize, null);
