@@ -19,8 +19,8 @@ public class Panel_de_Juego extends JPanel implements Runnable{
     public final int anchoPantalla = tileSize * tamanoColumna;
     public final int altoPantalla = tileSize * tamanoFila;
 
-    public final int maxWorldCol = 50;
-    public final int maxWorldRow = 50;
+    public int maxWorldCol;
+    public int maxWorldRow;
     public final int maxmap = 10;
     public int actualmapa = 0;
 
@@ -29,10 +29,7 @@ public class Panel_de_Juego extends JPanel implements Runnable{
     Teclado keyH = new Teclado();
     Thread gameThread;
     jugador jugador = new jugador(this, keyH);
-
-    int jugadorx = 100;
-    int jugadory = 100;
-    int velocidadjugador = 4;
+    
     //estados de juego
     public int estadodeljuego;
     public final int pantalladeinicio =0;

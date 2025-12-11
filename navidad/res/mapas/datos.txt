@@ -1,0 +1,16 @@
+tiles-1.png.png
+true
+tiles-2.png.png
+true
+tiles-3.png.png
+true
+tiles-4.png.png
+true
+tiles-5.png.png
+false
+tiles-6.png.png
+false
+tiles-7.png.png
+true
+tiles-8.png.png
+true
