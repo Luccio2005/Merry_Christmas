@@ -1,5 +1,8 @@
 package Main;
 
+
+import suelo.administradordesuelo;
+
 import entidad.jugador;
 
 import javax.swing.*;
@@ -10,26 +13,36 @@ import java.util.Collections;
 import java.util.Comparator;
 
 public class Panel_de_Juego extends JPanel implements Runnable{
-    final int originalTileSize = 55;   //64x64
+    final int originalTileSize = 55;   //55x55
     final int escala = 3;  //escala en la pantalla
 
     public final int tileSize = originalTileSize * escala;
-    public final int tamanoColumna = 20;
-    public final int tamanoFila = 12;
+    public final int tamanoColumna = 7;
+    public final int tamanoFila = 4;
     public final int anchoPantalla = tileSize * tamanoColumna;
     public final int altoPantalla = tileSize * tamanoFila;
 
-    public int maxWorldCol;
+    int FPS = 60;
+    public administradordesuelo sueloM = new administradordesuelo(this);
+    Teclado keyH = new Teclado();
+    Thread gameThread;
+    public comprobar_colisiones comprobar = new comprobar_colisiones(this);
+    public jugador jugador = new jugador(this, keyH);
+
+
+
+    /*public int maxWorldCol;
     public int maxWorldRow;
     public final int maxmap = 10;
     public int actualmapa = 0;
 
-    int FPS = 60;
 
-    Teclado keyH = new Teclado();
-    Thread gameThread;
-    jugador jugador = new jugador(this, keyH);
-    
+
+
+
+
+
+
     //estados de juego
     public int estadodeljuego;
     public final int pantalladeinicio =0;
@@ -43,7 +56,7 @@ public class Panel_de_Juego extends JPanel implements Runnable{
     public final int estadointercambio = 8;
     public final int estadodormir = 9;
     public final int estadomapa = 10;
-
+*/
     public Panel_de_Juego() {
         this.setPreferredSize(new Dimension(anchoPantalla, altoPantalla));
         this.setBackground(Color.black);
@@ -51,12 +64,12 @@ public class Panel_de_Juego extends JPanel implements Runnable{
         this.addKeyListener(keyH);
         this.setFocusable(true);
     }
-    public void setupGame(){
+    /*public void setupGame(){
     }
     public void retry(){
     }
     public void restart(){
-    }
+    }*/
     public void startGameThread(){
         gameThread = new Thread(this);
         gameThread.start();
@@ -69,8 +82,8 @@ public class Panel_de_Juego extends JPanel implements Runnable{
         while(gameThread != null){
 
             actualizar();
-            dibujartemppantalla();
-            dibujarpantalla();
+            //dibujartemppantalla();
+            //dibujarpantalla();
             repaint();
 
             try{
@@ -89,14 +102,15 @@ public class Panel_de_Juego extends JPanel implements Runnable{
         }
     }
     public void actualizar(){
-        jugador.actualizar();
+       jugador.actualizar();
     }
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
+        sueloM.dibujar(g2);
         jugador.dibujar(g2);
         g2.dispose();
-    }
+    }/*
     public void dibujartemppantalla(){
 
     }
@@ -110,5 +124,5 @@ public class Panel_de_Juego extends JPanel implements Runnable{
     }
     public void playSE(int i){
 
-    }
+    }*/
 }

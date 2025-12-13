@@ -12,17 +12,35 @@ public class jugador extends entidad{
     Panel_de_Juego gp;
     Teclado keyH;
 
+    //public final int pantallax;
+    //public final int pantallay;
+
     public jugador(Panel_de_Juego gp, Teclado keyH){
         this.gp = gp;
         this.keyH = keyH;
+
+        areadecolision = new Rectangle(0,0);
+        areadecolision.x = 45;
+        areadecolision.y = 120;
+        areadecolision.width = 75;
+        areadecolision.height = 45;
         valorespredeterminados();
         getPlayerImage();
+
+        /*pantallax = gp.anchoPantalla/2 - (gp.tileSize/2);
+        pantallay = gp.altoPantalla/2 - (gp.tileSize/2);
+
+        */
     }
     public void valorespredeterminados(){
-        x=100;
-        y=100;
+        mundox=gp.tileSize * 3;
+        mundoy=gp.tileSize * 3;
         velocidad=6;
-        direccion= "down";
+        direccion= "up";
+        /*mundox= gp.tileSize * 0;
+        mundoy= gp.tileSize * 49;
+        velocidad=6;
+        */
     }
     public void getPlayerImage(){
         try{
@@ -44,16 +62,23 @@ public class jugador extends entidad{
         keyH.izquierdap == true || keyH.derechap == true){
             if(keyH.arribap == true){
                 direccion = "up";
-                y -= velocidad;
             }else if(keyH.abajop == true){
                 direccion = "down";
-                y += velocidad;
             }else if(keyH.izquierdap == true){
                 direccion = "left";
-                x -= velocidad;
             }else if(keyH.derechap == true){
                 direccion = "right";
-                x += velocidad;
+            }
+
+            colisioon= false;
+            gp.comprobar.comprobarsuelo(this);
+            if(colisioon == false){
+                switch (direccion){
+                    case "up": mundoy -= velocidad; break;
+                    case "down": mundoy += velocidad; break;
+                    case "left": mundox -= velocidad; break;
+                    case "right": mundox += velocidad; break;
+                }
             }
             contadorSprite++;
             if(contadorSprite > 12){
@@ -99,6 +124,6 @@ public class jugador extends entidad{
             }
                 break;
         }
-        g2.drawImage(imagen, x, y, gp.tileSize, gp.tileSize, null);
+        g2.drawImage(imagen, mundox, mundoy, gp.tileSize, gp.tileSize, null);
     }
 }
