@@ -23,7 +23,7 @@ public class jugador extends entidad{
         areadecolision.x = 45;
         areadecolision.y = 120;
         areadecolision.width = 75;
-        areadecolision.height = 45;
+        areadecolision.height = 10;
         valorespredeterminados();
         getPlayerImage();
 

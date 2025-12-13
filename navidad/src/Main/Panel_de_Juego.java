@@ -1,6 +1,7 @@
 package Main;
 
 
+import objeto.Superobjeto;
 import suelo.administradordesuelo;
 
 import entidad.jugador;
@@ -27,7 +28,9 @@ public class Panel_de_Juego extends JPanel implements Runnable{
     Teclado keyH = new Teclado();
     Thread gameThread;
     public comprobar_colisiones comprobar = new comprobar_colisiones(this);
+    public Activos asetter = new Activos(this);
     public jugador jugador = new jugador(this, keyH);
+    public Superobjeto obj[] = new Superobjeto[10];
 
 
 
@@ -64,8 +67,9 @@ public class Panel_de_Juego extends JPanel implements Runnable{
         this.addKeyListener(keyH);
         this.setFocusable(true);
     }
-    /*public void setupGame(){
-    }
+    public void setupGame(){
+        asetter.setObject();
+    }/*
     public void retry(){
     }
     public void restart(){
@@ -108,6 +112,12 @@ public class Panel_de_Juego extends JPanel implements Runnable{
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
         sueloM.dibujar(g2);
+
+        for(int i = 0; i<obj.length; i++){
+            if(obj[i] !=null){
+                obj[i].dibujar(g2, this);
+            }
+        }
         jugador.dibujar(g2);
         g2.dispose();
     }/*
