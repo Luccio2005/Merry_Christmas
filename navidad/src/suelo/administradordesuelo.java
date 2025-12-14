@@ -80,7 +80,7 @@ public class administradordesuelo {
             suelo[04].colision = true;
 
             suelo[05] = new suelo();
-            suelo[05].imagen = ImageIO.read(getClass().getResourceAsStream("/suelo/sillon.png"));
+            suelo[05].imagen = ImageIO.read(getClass().getResourceAsStream("/suelo/sillon1.png"));
             suelo[05].colision = true;
 
             suelo[06] = new suelo();
@@ -88,6 +88,21 @@ public class administradordesuelo {
 
             suelo[07] = new suelo();
             suelo[07].imagen = ImageIO.read(getClass().getResourceAsStream("/suelo/suelo2.png"));
+
+            suelo[10] = new suelo();
+            suelo[10].imagen = ImageIO.read(getClass().getResourceAsStream("/suelo/maceta.png"));
+
+            suelo[11] = new suelo();
+            suelo[11].imagen = ImageIO.read(getClass().getResourceAsStream("/suelo/pared3.png"));
+            suelo[11].colision = true;
+
+            suelo[12] = new suelo();
+            suelo[12].imagen = ImageIO.read(getClass().getResourceAsStream("/suelo/sillon2.png"));
+            suelo[12].colision = true;
+
+            suelo[13] = new suelo();
+            suelo[13].imagen = ImageIO.read(getClass().getResourceAsStream("/suelo/ventana.png"));
+            suelo[13].colision = true;
         }catch (IOException e){
             e.printStackTrace();
         }
