@@ -103,6 +103,7 @@ public class jugador extends entidad{
             String nombreobj = gp.obj[i].nombre;
             switch (nombreobj){
                 case "estrella":
+                    gp.playSE(1);
                     tenerllave++;
                     gp.obj[i] = null;
                     System.out.println("estrella: "+tenerllave);
