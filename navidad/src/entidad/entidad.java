@@ -21,9 +21,10 @@ public class entidad {
     public int contadorSprite=0;
     public int numeroSprite=1;
     public Rectangle areadecolision;
+    public int areadecolisionx, areadecolisiony;
     public boolean colisioon = false;
     /*
-    public int areadecolisionx, areadecolisiony;
+
     public boolean colisioon = false;
     String dialogos[]= new String[20];
 

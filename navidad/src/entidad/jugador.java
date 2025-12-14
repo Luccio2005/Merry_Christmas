@@ -11,6 +11,7 @@ import java.io.IOException;
 public class jugador extends entidad{
     Panel_de_Juego gp;
     Teclado keyH;
+    public int tenerllave =0;
 
     //public final int pantallax;
     //public final int pantallay;
@@ -22,6 +23,8 @@ public class jugador extends entidad{
         areadecolision = new Rectangle(0,0);
         areadecolision.x = 45;
         areadecolision.y = 120;
+        areadecolisionx = areadecolision.x;
+        areadecolisiony = areadecolision.y;
         areadecolision.width = 75;
         areadecolision.height = 10;
         valorespredeterminados();
@@ -72,6 +75,9 @@ public class jugador extends entidad{
 
             colisioon= false;
             gp.comprobar.comprobarsuelo(this);
+
+            int objindice = gp.comprobar.comprobarobjeto(this,true);
+            recogerobjeto(objindice);
             if(colisioon == false){
                 switch (direccion){
                     case "up": mundoy -= velocidad; break;
@@ -89,6 +95,20 @@ public class jugador extends entidad{
                 }
                 contadorSprite = 0;
             }
+        }
+
+    }
+    public void recogerobjeto(int i){
+        if(i != 999){
+            String nombreobj = gp.obj[i].nombre;
+            switch (nombreobj){
+                case "estrella":
+                    tenerllave++;
+                    gp.obj[i] = null;
+                    System.out.println("estrella: "+tenerllave);
+                    break;
+            }
+
         }
 
     }
