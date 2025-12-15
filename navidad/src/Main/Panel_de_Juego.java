@@ -1,6 +1,7 @@
 package Main;
 
 
+import entidad.entidad;
 import objeto.Superobjeto;
 import suelo.administradordesuelo;
 
@@ -36,6 +37,7 @@ public class Panel_de_Juego extends JPanel implements Runnable{
     //entidad y objeto
     public jugador jugador = new jugador(this, keyH);
     public Superobjeto obj[] = new Superobjeto[10];
+    public entidad amiwitos[] = new entidad[10];
     // estado del juego
     public int estadodeljuego;
     public final int reanudar = 1;
@@ -72,6 +74,7 @@ public class Panel_de_Juego extends JPanel implements Runnable{
     }
     public void setupGame(){
         asetter.setObject();
+        asetter.setAmiwitos();
         playMusic(0);
         estadodeljuego = reanudar;
     }/*
@@ -118,13 +121,21 @@ public class Panel_de_Juego extends JPanel implements Runnable{
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
+        // suelo
         sueloM.dibujar(g2);
-
+        // objeto
         for(int i = 0; i<obj.length; i++){
             if(obj[i] !=null){
                 obj[i].dibujar(g2, this);
             }
         }
+        // amiwitos
+        for(int i = 0; i < amiwitos.length; i++){
+            if(amiwitos[i] != null){
+                amiwitos[i].dibujar(g2);
+            }
+        }
+        // jugador
         jugador.dibujar(g2);
         ui.dibujar(g2);
         g2.dispose();

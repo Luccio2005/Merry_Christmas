@@ -11,16 +11,16 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class entidad {
+    Panel_de_Juego gp;
     public int mundox,mundoy;
     public int velocidad;
-    Panel_de_Juego gp;
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
     public BufferedImage imagen, imagen2, imagen3;
     public String direccion = "down";
     //contador
     public int contadorSprite=0;
     public int numeroSprite=1;
-    public Rectangle areadecolision;
+    public Rectangle areadecolision = new Rectangle(0,0,165,165);
     public int areadecolisionx, areadecolisiony;
     public boolean colisioon = false;
     /*
@@ -61,10 +61,25 @@ public class entidad {
     public final int tipo_consumible = 6;
     public final int tipo_agarrarsolo = 7;
     public final int tipo_obstaculo = 8;
-
+*/
     public entidad(Panel_de_Juego gp){
         this.gp = gp;
     }
+    public void dibujar(Graphics2D g2){
+        BufferedImage imagen=down1;
+        g2.drawImage(imagen,mundox, mundoy, gp.tileSize, gp.tileSize, null);
+    }
+    public BufferedImage setup(String nombreimagen){
+        Herramientasdeutilidad Herramienta = new Herramientasdeutilidad();
+        BufferedImage imagen = null;
+        try{
+            imagen = ImageIO.read(getClass().getResourceAsStream(nombreimagen +".png"));
+            imagen = Herramienta.Imagenescala(imagen, gp.tileSize, gp.tileSize);
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+        return imagen;
+    }/*
     public int getizqx(){
         return mundox + areadecolision.x;
     }

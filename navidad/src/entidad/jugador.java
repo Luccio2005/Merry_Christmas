@@ -10,7 +10,6 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public class jugador extends entidad{
-    Panel_de_Juego gp;
     Teclado keyH;
     //public int tenerllave =0;
 
@@ -18,7 +17,7 @@ public class jugador extends entidad{
     //public final int pantallay;
 
     public jugador(Panel_de_Juego gp, Teclado keyH){
-        this.gp = gp;
+        super(gp);
         this.keyH = keyH;
 
         areadecolision = new Rectangle(0,0);
@@ -47,25 +46,14 @@ public class jugador extends entidad{
         */
     }
     public void getPlayerImage(){
-        up1 = setup("player-3");
-        up2 = setup("player-4");
-        down1 = setup("player-1");
-        down2 = setup("player-2");
-        left1 = setup("player-5");
-        left2 = setup("player-6");
-        right1 = setup("player-7");
-        right2 = setup("player-8");
-    }
-    public BufferedImage setup(String nombreimagen){
-        Herramientasdeutilidad Herramienta = new Herramientasdeutilidad();
-        BufferedImage imagen = null;
-        try{
-            imagen = ImageIO.read(getClass().getResourceAsStream("/jugador/"+ nombreimagen +".png"));
-            imagen = Herramienta.Imagenescala(imagen, gp.tileSize, gp.tileSize);
-        }catch(IOException e){
-            e.printStackTrace();
-        }
-        return imagen;
+        up1 = setup("/jugador/player-3");
+        up2 = setup("/jugador/player-4");
+        down1 = setup("/jugador/player-1");
+        down2 = setup("/jugador/player-2");
+        left1 = setup("/jugador/player-5");
+        left2 = setup("/jugador/player-6");
+        right1 = setup("/jugador/player-7");
+        right2 = setup("/jugador/player-8");
     }
     public void actualizar(){
         if(keyH.arribap == true || keyH.abajop == true ||
