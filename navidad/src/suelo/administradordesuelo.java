@@ -1,5 +1,6 @@
 package suelo;
 
+import Main.Herramientasdeutilidad;
 import Main.Panel_de_Juego;
 
 import javax.imageio.ImageIO;
@@ -62,50 +63,17 @@ public class administradordesuelo {
         cargarMapa("/mapas/casa.txt",0);*/
     }
     public void getTileImage(){
-        try{
-            suelo[01] = new suelo();
-            suelo[01].imagen = ImageIO.read(getClass().getResourceAsStream("/suelo/arbol1.png"));
-            suelo[01].colision = true;
-
-            suelo[02] = new suelo();
-            suelo[02].imagen = ImageIO.read(getClass().getResourceAsStream("/suelo/arbol2.png"));
-            suelo[02].colision = true;
-
-            suelo[03] = new suelo();
-            suelo[03].imagen = ImageIO.read(getClass().getResourceAsStream("/suelo/pared1.png"));
-            suelo[03].colision = true;
-
-            suelo[04] = new suelo();
-            suelo[04].imagen = ImageIO.read(getClass().getResourceAsStream("/suelo/pared2.png"));
-            suelo[04].colision = true;
-
-            suelo[05] = new suelo();
-            suelo[05].imagen = ImageIO.read(getClass().getResourceAsStream("/suelo/sillon1.png"));
-            suelo[05].colision = true;
-
-            suelo[06] = new suelo();
-            suelo[06].imagen = ImageIO.read(getClass().getResourceAsStream("/suelo/suelo1.png"));
-
-            suelo[07] = new suelo();
-            suelo[07].imagen = ImageIO.read(getClass().getResourceAsStream("/suelo/suelo2.png"));
-
-            suelo[10] = new suelo();
-            suelo[10].imagen = ImageIO.read(getClass().getResourceAsStream("/suelo/maceta.png"));
-
-            suelo[11] = new suelo();
-            suelo[11].imagen = ImageIO.read(getClass().getResourceAsStream("/suelo/pared3.png"));
-            suelo[11].colision = true;
-
-            suelo[12] = new suelo();
-            suelo[12].imagen = ImageIO.read(getClass().getResourceAsStream("/suelo/sillon2.png"));
-            suelo[12].colision = true;
-
-            suelo[13] = new suelo();
-            suelo[13].imagen = ImageIO.read(getClass().getResourceAsStream("/suelo/ventana.png"));
-            suelo[13].colision = true;
-        }catch (IOException e){
-            e.printStackTrace();
-        }
+            setup(01,"arbol1",true);
+            setup(02,"arbol2",true);
+            setup(03,"pared1",true);
+            setup(04,"pared2",true);
+            setup(05,"sillon1",true);
+            setup(06,"suelo1",false);
+            setup(07,"suelo2",false);
+            setup(10,"maceta",false);
+            setup(11,"pared3",true);
+            setup(12,"sillon2",true);
+            setup(13,"ventana",true);
         /*
         for(int i=0; i<nombredoc.size();i++){
             String nombredoc1;
@@ -131,6 +99,19 @@ public class administradordesuelo {
             e.printStackTrace();
         }
     }*/
+    public void setup(int indice, String nombreimagen, boolean colision){
+        Herramientasdeutilidad Herramienta = new Herramientasdeutilidad();
+
+        try{
+            suelo[indice] = new suelo();
+            suelo[indice].imagen = ImageIO.read(getClass().getResourceAsStream("/suelo/"+nombreimagen+".png"));
+            suelo[indice].imagen = Herramienta.Imagenescala(suelo[indice].imagen,gp.tileSize, gp.tileSize);
+            suelo[indice].colision = colision;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
     public void cargarMapa(/*String filePath, int map*/){
         try{
             InputStream is = getClass().getResourceAsStream("/mapas/beta.txt");
@@ -189,7 +170,7 @@ public class administradordesuelo {
         int y = 0;
         while(columnamundo < gp.tamanoColumna && filamundo < gp.tamanoFila){
             int tileNum = mapNum[columnamundo][filamundo];
-            g2.drawImage(suelo[tileNum].imagen,x, y, gp.tileSize, gp.tileSize, null);
+            g2.drawImage(suelo[tileNum].imagen,x, y,null);
             columnamundo++;
             x += gp.tileSize;
             if(columnamundo == gp.tamanoColumna){

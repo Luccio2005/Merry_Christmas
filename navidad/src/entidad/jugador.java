@@ -1,5 +1,6 @@
 package entidad;
 
+import Main.Herramientasdeutilidad;
 import Main.Panel_de_Juego;
 import Main.Teclado;
 
@@ -46,19 +47,25 @@ public class jugador extends entidad{
         */
     }
     public void getPlayerImage(){
+        up1 = setup("player-3");
+        up2 = setup("player-4");
+        down1 = setup("player-1");
+        down2 = setup("player-2");
+        left1 = setup("player-5");
+        left2 = setup("player-6");
+        right1 = setup("player-7");
+        right2 = setup("player-8");
+    }
+    public BufferedImage setup(String nombreimagen){
+        Herramientasdeutilidad Herramienta = new Herramientasdeutilidad();
+        BufferedImage imagen = null;
         try{
-            up1 = ImageIO.read(getClass().getResourceAsStream("/jugador/player-3.png"));
-            up2 = ImageIO.read(getClass().getResourceAsStream("/jugador/player-4.png"));
-            down1 = ImageIO.read(getClass().getResourceAsStream("/jugador/player-1.png"));
-            down2 = ImageIO.read(getClass().getResourceAsStream("/jugador/player-2.png"));
-            left1 = ImageIO.read(getClass().getResourceAsStream("/jugador/player-5.png"));
-            left2 = ImageIO.read(getClass().getResourceAsStream("/jugador/player-6.png"));
-            right1 = ImageIO.read(getClass().getResourceAsStream("/jugador/player-7.png"));
-            right2 = ImageIO.read(getClass().getResourceAsStream("/jugador/player-8.png"));
-        }catch (IOException e){
+            imagen = ImageIO.read(getClass().getResourceAsStream("/jugador/"+ nombreimagen +".png"));
+            imagen = Herramienta.Imagenescala(imagen, gp.tileSize, gp.tileSize);
+        }catch(IOException e){
             e.printStackTrace();
         }
-
+        return imagen;
     }
     public void actualizar(){
         if(keyH.arribap == true || keyH.abajop == true ||
@@ -142,6 +149,6 @@ public class jugador extends entidad{
             }
                 break;
         }
-        g2.drawImage(imagen, mundox, mundoy, gp.tileSize, gp.tileSize, null);
+        g2.drawImage(imagen, mundox, mundoy, null);
     }
 }
