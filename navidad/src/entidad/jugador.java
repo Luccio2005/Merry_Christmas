@@ -12,7 +12,7 @@ import java.io.IOException;
 public class jugador extends entidad{
     Panel_de_Juego gp;
     Teclado keyH;
-    public int tenerllave =0;
+    //public int tenerllave =0;
 
     //public final int pantallax;
     //public final int pantallay;
@@ -107,14 +107,14 @@ public class jugador extends entidad{
     }
     public void recogerobjeto(int i){
         if(i != 999){
-            String nombreobj = gp.obj[i].nombre;
+            /*String nombreobj = gp.obj[i].nombre;
             switch (nombreobj){
                 case "estrella":
                     gp.playSE(1);
                     tenerllave++;
                     gp.obj[i] = null;
                     break;
-            }
+            }*/
         }
     }
     public void dibujar(Graphics2D g2){

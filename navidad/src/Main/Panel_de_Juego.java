@@ -26,7 +26,7 @@ public class Panel_de_Juego extends JPanel implements Runnable{
     int FPS = 60;
     //system
     public administradordesuelo sueloM = new administradordesuelo(this);
-    Teclado keyH = new Teclado();
+    public Teclado keyH = new Teclado(this);
     sonido musica = new sonido();
     sonido se = new sonido();
     public comprobar_colisiones comprobar = new comprobar_colisiones(this);
@@ -36,6 +36,12 @@ public class Panel_de_Juego extends JPanel implements Runnable{
     //entidad y objeto
     public jugador jugador = new jugador(this, keyH);
     public Superobjeto obj[] = new Superobjeto[10];
+    // estado del juego
+    public int estadodeljuego;
+    public final int reanudar = 1;
+    public final int pausar = 2;
+
+
 
 
 
@@ -45,14 +51,6 @@ public class Panel_de_Juego extends JPanel implements Runnable{
     public int actualmapa = 0;
 
 
-
-
-
-
-
-
-    //estados de juego
-    public int estadodeljuego;
     public final int pantalladeinicio =0;
     public final int reanudar = 1;
     public final int pausar = 2;
@@ -75,6 +73,7 @@ public class Panel_de_Juego extends JPanel implements Runnable{
     public void setupGame(){
         asetter.setObject();
         playMusic(0);
+        estadodeljuego = reanudar;
     }/*
     public void retry(){
     }
@@ -112,7 +111,9 @@ public class Panel_de_Juego extends JPanel implements Runnable{
         }
     }
     public void actualizar(){
-       jugador.actualizar();
+       if(estadodeljuego == reanudar){
+           jugador.actualizar();
+       }
     }
     public void paintComponent(Graphics g){
         super.paintComponent(g);

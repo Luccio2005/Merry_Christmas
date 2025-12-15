@@ -6,6 +6,9 @@ import java.awt.event.KeyListener;
 public class Teclado implements KeyListener {
     Panel_de_Juego gp;
     public boolean arribap, abajop, izquierdap, derechap, enterp;
+    public Teclado(Panel_de_Juego gp){
+        this.gp = gp;
+    }
     @Override
     public void keyTyped(KeyEvent e) {
     }
