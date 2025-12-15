@@ -106,12 +106,9 @@ public class jugador extends entidad{
                     gp.playSE(1);
                     tenerllave++;
                     gp.obj[i] = null;
-                    System.out.println("estrella: "+tenerllave);
                     break;
             }
-
         }
-
     }
     public void dibujar(Graphics2D g2){
         BufferedImage imagen=null;

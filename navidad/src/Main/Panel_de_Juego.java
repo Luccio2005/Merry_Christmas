@@ -27,9 +27,11 @@ public class Panel_de_Juego extends JPanel implements Runnable{
     //system
     public administradordesuelo sueloM = new administradordesuelo(this);
     Teclado keyH = new Teclado();
-    sonido sonido = new sonido();
+    sonido musica = new sonido();
+    sonido se = new sonido();
     public comprobar_colisiones comprobar = new comprobar_colisiones(this);
     public Activos asetter = new Activos(this);
+    public UI ui= new UI(this);
     Thread gameThread;
     //entidad y objeto
     public jugador jugador = new jugador(this, keyH);
@@ -123,6 +125,7 @@ public class Panel_de_Juego extends JPanel implements Runnable{
             }
         }
         jugador.dibujar(g2);
+        ui.dibujar(g2);
         g2.dispose();
     }/*
     public void dibujartemppantalla(){
@@ -132,15 +135,15 @@ public class Panel_de_Juego extends JPanel implements Runnable{
 
     }*/
     public void playMusic(int i){
-        sonido.setFile(i);
-        sonido.play();
-        sonido.loop();
+        musica.setFile(i);
+        musica.play();
+        musica.loop();
     }
     public void stopMusic(){
-        sonido.stop();
+        musica.stop();
     }
     public void playSE(int i){
-        sonido.setFile(i);
-        sonido.play();
+        se.setFile(i);
+        se.play();
     }
 }
