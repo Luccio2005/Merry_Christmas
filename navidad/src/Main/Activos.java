@@ -1,5 +1,6 @@
 package Main;
 
+import entidad.aby;
 import entidad.ann;
 import objeto.Obj_estrella;
 
@@ -31,6 +32,10 @@ public class Activos {
         int i = 0;
         gp.amiwitos[i]= new ann(gp);
         gp.amiwitos[i].mundox = gp.tileSize;
+        gp.amiwitos[i].mundoy = gp.tileSize;
+        i++;
+        gp.amiwitos[i]= new aby(gp);
+        gp.amiwitos[i].mundox = 2*gp.tileSize;
         gp.amiwitos[i].mundoy = gp.tileSize;
         i++;
     }

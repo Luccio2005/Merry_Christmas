@@ -18,5 +18,4 @@ public class ann extends entidad{
         down1 = setup("/amiwitos/ann-1");
         //down2 = setup("/amiwitos/ann-1");
     }
-
 }
