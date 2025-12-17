@@ -13,9 +13,13 @@ public class ann extends entidad{
 
         direccion= "down";
         getImage();
+        setdialogo();
     }
     public void getImage(){
         down1 = setup("/amiwitos/ann-1");
         //down2 = setup("/amiwitos/ann-1");
+    }
+    public void setdialogo(){
+        dialogos[0] = "para ti";
     }
 }

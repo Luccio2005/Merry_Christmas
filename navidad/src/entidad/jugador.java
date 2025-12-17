@@ -73,6 +73,9 @@ public class jugador extends entidad{
 
             int objindice = gp.comprobar.comprobarobjeto(this,true);
             recogerobjeto(objindice);
+            //check awimitos colision
+            int amiwitosindice = gp.comprobar.comprobarentidad(this,gp.amiwitos);
+            interactuaramiwitos(amiwitosindice);
             if(colisioon == false){
                 switch (direccion){
                     case "up": mundoy -= velocidad; break;
@@ -104,6 +107,16 @@ public class jugador extends entidad{
                     break;
             }*/
         }
+    }
+    public void interactuaramiwitos(int i ){
+        //if (gp.keyH.enterp == true) {
+            if (i != 999) {
+                gp.estadodeljuego = gp.dialogo;
+               /* cancelaratq = true;
+
+                gp.npc[gp.actualmapa][i].hablar();
+            */}
+        //}
     }
     public void dibujar(Graphics2D g2){
         BufferedImage imagen=null;

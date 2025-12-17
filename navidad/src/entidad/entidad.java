@@ -17,16 +17,16 @@ public class entidad {
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
     public BufferedImage imagen, imagen2, imagen3;
     public String direccion = "down";
+
     //contador
     public int contadorSprite=0;
     public int numeroSprite=1;
     public Rectangle areadecolision = new Rectangle(0,0,165,165);
     public int areadecolisionx, areadecolisiony;
     public boolean colisioon = false;
+    String dialogos[]= new String[20];
     /*
 
-    public boolean colisioon = false;
-    String dialogos[]= new String[20];
 
     public int bloqueodeaccion =0;
 
@@ -64,6 +64,37 @@ public class entidad {
 */
     public entidad(Panel_de_Juego gp){
         this.gp = gp;
+    }
+    public void setaction(){
+    }
+    public void actualizar(){
+        setaction();
+       /* comprobarcolision();
+        if(colisioon == false){
+            switch (direccion){
+                case "up":
+                    mundoy -= velocidad;
+                    break;
+                case "down":
+                    mundoy += velocidad;
+                    break;
+                case "left":
+                    mundox -= velocidad;
+                    break;
+                case "right":
+                    mundox += velocidad;
+                    break;
+            }
+        }
+        contadorSprite++;
+        if(contadorSprite>24){
+            if(numeroSprite ==1){
+                numeroSprite = 2;}
+            else if(numeroSprite ==2){
+                numeroSprite=1;
+            }
+            contadorSprite=0;
+        }*/
     }
     public void dibujar(Graphics2D g2){
         BufferedImage imagen=down1;
@@ -118,8 +149,7 @@ public class entidad {
         int metafila = (target.mundoy + target.areadecolision.y)/gp.tileSize;
         return metafila;
     }
-    public void setaction(){
-    }
+
     public void hablar(){
         if(dialogos[indicededialogos] == null){
             indicededialogos = 0;
@@ -155,35 +185,7 @@ public class entidad {
             damageplayer(atq);
         }
     }
-    public void actualizar(){
-    setaction();
-    comprobarcolision();
-            if(colisioon == false){
-        switch (direccion){
-            case "up":
-                mundoy -= velocidad;
-                break;
-            case "down":
-                mundoy += velocidad;
-                break;
-            case "left":
-                mundox -= velocidad;
-                break;
-            case "right":
-                mundox += velocidad;
-                break;
-        }
-    }
-    contadorSprite++;
-            if(contadorSprite>24){
-        if(numeroSprite ==1){
-            numeroSprite = 2;}
-        else if(numeroSprite ==2){
-            numeroSprite=1;
-        }
-        contadorSprite=0;
-    }
-}
+
     public void dibujar(Graphics2D g2){
         BufferedImage imagen=null;
         int pantallax= mundox - gp.jugador.mundox + gp.jugador.pantallax;

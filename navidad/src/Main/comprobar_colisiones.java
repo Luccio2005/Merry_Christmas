@@ -91,5 +91,41 @@ public class comprobar_colisiones {
         }
         return indice;
     }
+    public int comprobarentidad(entidad entidad, entidad[] target){
+        int indice = 999;
+        for(int i =0;i<target.length;i++){
+            if(target[i] !=null){
+                entidad.areadecolision.x = entidad.mundox + entidad.areadecolision.x;
+                entidad.areadecolision.y = entidad.mundoy + entidad.areadecolision.y;
+
+                target[i].areadecolision.x =  target[i].mundox + target[i].areadecolision.x;
+                target[i].areadecolision.y =  target[i].mundoy + target[i].areadecolision.y;
+
+                switch (entidad.direccion){
+                    case "up":
+                        entidad.areadecolision.y -= entidad.velocidad;
+                        break;
+                    case "down":
+                        entidad.areadecolision.y += entidad.velocidad;
+                        break;
+                    case "left":
+                        entidad.areadecolision.x -= entidad.velocidad;
+                        break;
+                    case "right":
+                        entidad.areadecolision.x += entidad.velocidad;
+                        break;
+                }
+                if(entidad.areadecolision.intersects(target[i].areadecolision)){
+                        entidad.colisioon = true;
+                        indice=i;
+                }
+                entidad.areadecolision.x = entidad.areadecolisionx;
+                entidad.areadecolision.y = entidad.areadecolisiony;
+                target[i].areadecolision.x = target[i].areadecolisionx;
+                target[i].areadecolision.y = target[i].areadecolisiony;
+            }
+        }
+        return indice;
+    }
 }
 
