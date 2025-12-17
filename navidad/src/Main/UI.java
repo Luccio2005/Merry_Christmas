@@ -33,9 +33,12 @@ public class UI {
         int ancho = gp.tileSize * 3;
         int alto = gp.tileSize;
         dibujarpestana(x,y,ancho,alto);
-        /*g2.setFont(g2.getFont().deriveFont(Font.PLAIN,28F));
-        x += gp.tileSize;
-        y += gp.tileSize;
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN,28F));
+        int textox = x+40;
+        int textoy = y+60;
+        g2.drawString(dialogoactual, textox, textoy);
+        /*
+
         for(String line: dialogoactual.split("\n")){
             g2.drawString(line,x,y);
             y+= 40;

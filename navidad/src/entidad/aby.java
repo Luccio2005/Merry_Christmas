@@ -8,9 +8,16 @@ public class aby extends entidad{
 
         direccion= "down";
         getImage();
+        setdialogo();
     }
     public void getImage(){
         down1 = setup("/amiwitos/aby-1");
         //down2 = setup("/amiwitos/ann-1");
+    }
+    public void setdialogo(){
+        dialogos[0] = "para ti!!!";
+    }
+    public void hablar(){
+        gp.ui.dialogoactual = dialogos[0];
     }
 }

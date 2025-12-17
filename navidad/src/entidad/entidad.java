@@ -25,6 +25,7 @@ public class entidad {
     public int areadecolisionx, areadecolisiony;
     public boolean colisioon = false;
     String dialogos[]= new String[20];
+    int indicededialogos = 0;
     /*
 
 
@@ -34,7 +35,7 @@ public class entidad {
     public int mundox,mundoy;
 
 
-    int indicededialogos = 0;
+
 
     public boolean onpath = false;
 
@@ -66,6 +67,9 @@ public class entidad {
         this.gp = gp;
     }
     public void setaction(){
+    }
+    public void hablar(){
+
     }
     public void actualizar(){
         setaction();

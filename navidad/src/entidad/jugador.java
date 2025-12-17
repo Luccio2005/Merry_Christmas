@@ -112,9 +112,10 @@ public class jugador extends entidad{
         //if (gp.keyH.enterp == true) {
             if (i != 999) {
                 gp.estadodeljuego = gp.dialogo;
+                gp.amiwitos[i].hablar();
                /* cancelaratq = true;
 
-                gp.npc[gp.actualmapa][i].hablar();
+
             */}
         //}
     }

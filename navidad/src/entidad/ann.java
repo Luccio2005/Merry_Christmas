@@ -20,6 +20,9 @@ public class ann extends entidad{
         //down2 = setup("/amiwitos/ann-1");
     }
     public void setdialogo(){
-        dialogos[0] = "para ti";
+        dialogos[0] = "para ti!!!";
+    }
+    public void hablar(){
+        gp.ui.dialogoactual = dialogos[0];
     }
 }
