@@ -40,6 +40,7 @@ public class Panel_de_Juego extends JPanel implements Runnable{
     public entidad amiwitos[] = new entidad[10];
     // estado del juego
     public int estadodeljuego;
+    public final int pantalladeinicio =0;
     public final int reanudar = 1;
     public final int pausar = 2;
     public final int dialogo = 3;
@@ -54,7 +55,7 @@ public class Panel_de_Juego extends JPanel implements Runnable{
     public int actualmapa = 0;
 
 
-    public final int pantalladeinicio =0;
+
 
     public final int estadodepersonaje = 4;
     public final int estadodeopciones = 5;
@@ -74,8 +75,8 @@ public class Panel_de_Juego extends JPanel implements Runnable{
     public void setupGame(){
         asetter.setObject();
         asetter.setAmiwitos();
-        playMusic(0);
-        estadodeljuego = reanudar;
+        //playMusic(0);
+        estadodeljuego = pantalladeinicio;
     }/*
     public void retry(){
     }
@@ -120,23 +121,28 @@ public class Panel_de_Juego extends JPanel implements Runnable{
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
-        // suelo
-        sueloM.dibujar(g2);
-        // objeto
-        for(int i = 0; i<obj.length; i++){
-            if(obj[i] !=null){
-                obj[i].dibujar(g2, this);
+        if(estadodeljuego == pantalladeinicio){
+            ui.dibujar(g2);
+        }else{
+            // suelo
+            sueloM.dibujar(g2);
+            // objeto
+            for(int i = 0; i<obj.length; i++){
+                if(obj[i] !=null){
+                    obj[i].dibujar(g2, this);
+                }
             }
-        }
-        // amiwitos
-        for(int i = 0; i < amiwitos.length; i++){
-            if(amiwitos[i] != null){
-                amiwitos[i].dibujar(g2);
+            // amiwitos
+            for(int i = 0; i < amiwitos.length; i++){
+                if(amiwitos[i] != null){
+                    amiwitos[i].dibujar(g2);
+                }
             }
+            // jugador
+            jugador.dibujar(g2);
+            ui.dibujar(g2);
         }
-        // jugador
-        jugador.dibujar(g2);
-        ui.dibujar(g2);
+
         g2.dispose();
     }/*
     public void dibujartemppantalla(){

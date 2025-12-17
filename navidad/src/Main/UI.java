@@ -1,6 +1,12 @@
 package Main;
 
+import objeto.Obj_arbolnav;
+import objeto.Superobjeto;
+
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 public class UI {
     Panel_de_Juego gp;
@@ -8,6 +14,7 @@ public class UI {
     Font arial_40;
     public boolean juegoterminado = false;
     public String dialogoactual="";
+    public int numerodecomando = 0;
 
     public  UI(Panel_de_Juego gp){
         this.gp = gp;
@@ -17,6 +24,10 @@ public class UI {
         this.g2 = g2;
         g2.setFont(arial_40);
         g2.setColor(Color.white);
+        //pantalla de inico
+        if(gp.estadodeljuego == gp.pantalladeinicio){
+            dibujarpantalladeinicio();
+        }
         // reanudar
         if(gp.estadodeljuego == gp.reanudar){
 
@@ -24,6 +35,56 @@ public class UI {
         // dialogo
         if(gp.estadodeljuego == gp.dialogo){
             dibujarpantalladedialogo();
+        }
+    }
+    public void dibujarpantalladeinicio(){
+        g2.setColor(new Color(70,120,80));
+        g2.fillRect(0,0,gp.anchoPantalla,gp.altoPantalla);
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD,96F));
+        String texto = "MERRY CHRISTMAS!!!";
+        int x= getxforcenteredtext(texto);
+        int y= gp.tileSize;
+
+        g2.setColor(Color.black);
+        g2.drawString(texto,x+5,y+5);
+
+        g2.setColor(Color.red);
+        g2.drawString(texto,x,y);
+
+        x= (gp.tileSize*3)-80;
+        y= gp.tileSize -80;
+        try{
+            BufferedImage imagen = ImageIO.read(getClass().getResourceAsStream("/objetos/estrella.png"));
+            g2.drawImage(imagen,x,y,gp.tileSize*2, gp.tileSize*2,null);
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+
+        //menu
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD,48F));
+        g2.setColor(Color.black);
+        texto="Iniciar";
+        x= getxforcenteredtext(texto);
+        y=gp.tileSize + 200;
+        g2.drawString(texto, x, y);
+        if(numerodecomando == 0){
+            g2.drawString(">",x- 60,y);
+        }
+
+        texto="Continuar";
+        x= getxforcenteredtext(texto);
+        y+= 80;
+        g2.drawString(texto, x, y);
+        if(numerodecomando == 1){
+            g2.drawString(">",x- 60,y);
+        }
+
+        texto="Salir";
+        x= getxforcenteredtext(texto);
+        y+= 80;
+        g2.drawString(texto, x, y);
+        if(numerodecomando == 2){
+            g2.drawString(">",x- 60,y);
         }
     }
     public void dibujarpantalladedialogo(){
