@@ -36,12 +36,15 @@ public class UI {
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN,28F));
         int textox = x+40;
         int textoy = y+60;
-        g2.drawString(dialogoactual, textox, textoy);
+        for(String line: dialogoactual.split("\n")){
+            g2.drawString(dialogoactual, textox, textoy);
+            y+= 40;
+        }
         /*
 
         for(String line: dialogoactual.split("\n")){
             g2.drawString(line,x,y);
-            y+= 40;
+
         }*/
     }
     public void dibujarpestana(int x, int y, int ancho, int alto){

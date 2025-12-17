@@ -109,15 +109,13 @@ public class jugador extends entidad{
         }
     }
     public void interactuaramiwitos(int i ){
-        //if (gp.keyH.enterp == true) {
+        if (gp.keyH.enterp == true) {
             if (i != 999) {
                 gp.estadodeljuego = gp.dialogo;
                 gp.amiwitos[i].hablar();
-               /* cancelaratq = true;
-
-
-            */}
-        //}
+            }
+        }
+        gp.keyH.enterp = false;
     }
     public void dibujar(Graphics2D g2){
         BufferedImage imagen=null;

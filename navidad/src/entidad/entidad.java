@@ -69,7 +69,11 @@ public class entidad {
     public void setaction(){
     }
     public void hablar(){
-
+        if(dialogos[indicededialogos] == null){
+            indicededialogos = 0;
+        }
+        gp.ui.dialogoactual = dialogos[indicededialogos];
+        indicededialogos++;
     }
     public void actualizar(){
         setaction();

@@ -30,6 +30,9 @@ public class Teclado implements KeyListener {
             if(codigo == KeyEvent.VK_D){
                 derechap = true;
             }
+            if(codigo == KeyEvent.VK_ENTER){
+                enterp = true;
+            }
         }
         // dialogo estado
         else if(gp.estadodeljuego == gp.dialogo){
