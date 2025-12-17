@@ -16,17 +16,26 @@ public class Teclado implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         int codigo = e.getKeyCode();
-        if(codigo == KeyEvent.VK_W){
-            arribap = true;
+        //reanudar
+        if(gp.estadodeljuego == gp.reanudar){
+            if(codigo == KeyEvent.VK_W){
+                arribap = true;
+            }
+            if(codigo == KeyEvent.VK_S){
+                abajop = true;
+            }
+            if(codigo == KeyEvent.VK_A){
+                izquierdap = true;
+            }
+            if(codigo == KeyEvent.VK_D){
+                derechap = true;
+            }
         }
-        if(codigo == KeyEvent.VK_S){
-            abajop = true;
-        }
-        if(codigo == KeyEvent.VK_A){
-            izquierdap = true;
-        }
-        if(codigo == KeyEvent.VK_D){
-            derechap = true;
+        // dialogo estado
+        else if(gp.estadodeljuego == gp.dialogo){
+            if(codigo == KeyEvent.VK_ENTER){
+                gp.estadodeljuego = gp.reanudar;
+            }
         }
     }
 

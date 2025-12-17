@@ -23,6 +23,7 @@ public class ann extends entidad{
         dialogos[0] = "para ti!!!";
     }
     public void hablar(){
-        gp.ui.dialogoactual = dialogos[0];
+        gp.ui.dialogoactual = dialogos[indicededialogos];
+        //indicededialogos++;
     }
 }
