@@ -1,8 +1,5 @@
 package Main;
 
-import objeto.Obj_arbolnav;
-import objeto.Superobjeto;
-
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;

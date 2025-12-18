@@ -26,6 +26,9 @@ public class entidad {
     public boolean colisioon = false;
     public String dialogos[]= new String[20];
     public int indicededialogos = 0;
+    //public BufferedImage imagen;
+    public String nombre;
+    public boolean colision = false;
     /*
 
 

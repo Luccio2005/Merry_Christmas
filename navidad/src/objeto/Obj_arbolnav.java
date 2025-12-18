@@ -1,21 +1,16 @@
 package objeto;
 
 import Main.Panel_de_Juego;
+import entidad.entidad;
 
 import javax.imageio.ImageIO;
 import java.io.IOException;
 
-public class Obj_arbolnav extends Superobjeto{
-    Panel_de_Juego gp;
+public class Obj_arbolnav extends entidad{
     public Obj_arbolnav(Panel_de_Juego gp){
-        this.gp = gp;
+        super(gp);
         nombre = "arbolnav";
-        try{
-            imagen = ImageIO.read(getClass().getResourceAsStream("/objetos/arbolnav.png"));
-            Herramienta.Imagenescala(imagen, gp.tileSize, gp.tileSize);
-        }catch(IOException e){
-            e.printStackTrace();
-        }
+        down1 = setup("/objetos/arbolnav");
         colision = true;
     }
 }

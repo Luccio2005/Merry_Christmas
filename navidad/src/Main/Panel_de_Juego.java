@@ -2,14 +2,12 @@ package Main;
 
 
 import entidad.entidad;
-import objeto.Superobjeto;
 import suelo.administradordesuelo;
 
 import entidad.jugador;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -39,9 +37,10 @@ public class Panel_de_Juego extends JPanel implements Runnable{
     Thread gameThread;
     //entidad y objeto
     public jugador jugador = new jugador(this, keyH);
-    public Superobjeto obj[] = new Superobjeto[10];
+    public entidad obj[] = new entidad[10];
     public entidad amiwitos[] = new entidad[10];
     public entidad entidadDialogoactual;
+    ArrayList<entidad> listaentidad = new ArrayList<>();
     // estado del juego
     public int estadodeljuego;
     public final int pantalladeinicio =0;
@@ -143,20 +142,35 @@ public class Panel_de_Juego extends JPanel implements Runnable{
         }else{
             // suelo
             sueloM.dibujar(g2);
-            // objeto
-            for(int i = 0; i<obj.length; i++){
-                if(obj[i] !=null){
-                    obj[i].dibujar(g2, this);
-                }
-            }
-            // amiwitos
-            for(int i = 0; i < amiwitos.length; i++){
-                if(amiwitos[i] != null){
-                    amiwitos[i].dibujar(g2);
-                }
-            }
             // jugador
-            jugador.dibujar(g2);
+            listaentidad.add(jugador);
+
+            for(int i = 0; i< amiwitos.length; i++){
+                if(amiwitos[i] != null){
+                    listaentidad.add(amiwitos[i]);
+                }
+            }
+            for(int i = 0; i< obj.length; i++){
+                if(obj[i] != null){
+                    listaentidad.add(obj[i]);
+                }
+            }
+            //sort
+            Collections.sort(listaentidad, new Comparator<entidad>() {
+                @Override
+                public int compare(entidad e1, entidad e2) {
+                    int result = Integer.compare(e1.mundoy, e2.mundoy);
+                    return result;
+                }
+            });
+            // dibujar entidades
+            for(int i = 0; i< listaentidad.size();i++){
+                listaentidad.get(i).dibujar(g2);
+            }
+            //vaciar lista entidad
+            for(int i = 0; i< listaentidad.size();i++){
+                listaentidad.remove(i);
+            }
             ui.dibujar(g2);
         }
 
