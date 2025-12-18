@@ -76,6 +76,8 @@ public class jugador extends entidad{
             //check awimitos colision
             int amiwitosindice = gp.comprobar.comprobarentidad(this,gp.amiwitos);
             interactuaramiwitos(amiwitosindice);
+            // COMPROBBAR EVENTO
+            gp.evento.comprobarevento();
             if(colisioon == false){
                 switch (direccion){
                     case "up": mundoy -= velocidad; break;
@@ -109,9 +111,11 @@ public class jugador extends entidad{
         }
     }
     public void interactuaramiwitos(int i ){
-        if (gp.keyH.enterp == true) {
-            if (i != 999) {
+        if (i != 999) {
+            if(gp.keyH.enterp == true){
                 gp.estadodeljuego = gp.dialogo;
+                gp.entidadDialogoactual = gp.amiwitos[i];
+                gp.amiwitos[i].indicededialogos = 0;
                 gp.amiwitos[i].hablar();
             }
         }

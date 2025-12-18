@@ -24,8 +24,8 @@ public class entidad {
     public Rectangle areadecolision = new Rectangle(0,0,165,165);
     public int areadecolisionx, areadecolisiony;
     public boolean colisioon = false;
-    String dialogos[]= new String[20];
-    int indicededialogos = 0;
+    public String dialogos[]= new String[20];
+    public int indicededialogos = 0;
     /*
 
 

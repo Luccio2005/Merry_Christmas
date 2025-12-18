@@ -63,7 +63,8 @@ public class Teclado implements KeyListener {
         // dialogo estado
         else if(gp.estadodeljuego == gp.dialogo){
             if(codigo == KeyEvent.VK_ENTER){
-                gp.estadodeljuego = gp.reanudar;
+                enterp = true;
+                //gp.estadodeljuego = gp.reanudar;
             }
         }
     }

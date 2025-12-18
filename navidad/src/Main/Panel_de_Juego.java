@@ -18,6 +18,8 @@ public class Panel_de_Juego extends JPanel implements Runnable{
     final int originalTileSize = 55;   //55x55
     final int escala = 3;  //escala en la pantalla
 
+    public int estrellasrecogidas = 0;
+    public int estrellasentregadas = 0;
     public final int tileSize = originalTileSize * escala;
     public final int tamanoColumna = 7;
     public final int tamanoFila = 4;
@@ -33,11 +35,13 @@ public class Panel_de_Juego extends JPanel implements Runnable{
     public comprobar_colisiones comprobar = new comprobar_colisiones(this);
     public Activos asetter = new Activos(this);
     public UI ui= new UI(this);
+    public Eventos evento = new Eventos(this);
     Thread gameThread;
     //entidad y objeto
     public jugador jugador = new jugador(this, keyH);
     public Superobjeto obj[] = new Superobjeto[10];
     public entidad amiwitos[] = new entidad[10];
+    public entidad entidadDialogoactual;
     // estado del juego
     public int estadodeljuego;
     public final int pantalladeinicio =0;
@@ -117,6 +121,19 @@ public class Panel_de_Juego extends JPanel implements Runnable{
        if(estadodeljuego == reanudar){
            jugador.actualizar();
        }
+        // CONTROL DE DIALOGOS
+        if(estadodeljuego == dialogo && keyH.enterp){
+            // avanzar dialogo
+            entidadDialogoactual.hablar();
+
+            // si ya no hay dialogos → salir
+            if(entidadDialogoactual.dialogos[entidadDialogoactual.indicededialogos] == null){
+                estadodeljuego = reanudar;
+                entidadDialogoactual.indicededialogos = 0;
+            }
+
+            keyH.enterp = false;
+        }
     }
     public void paintComponent(Graphics g){
         super.paintComponent(g);

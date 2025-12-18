@@ -16,6 +16,7 @@ public class aby extends entidad{
     }
     public void setdialogo(){
         dialogos[0] = "para ti!!!";
+        dialogos[1] = null;
     }
     public void hablar(){
         super.hablar();
