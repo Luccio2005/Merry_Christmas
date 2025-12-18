@@ -78,6 +78,7 @@ public class jugador extends entidad{
             interactuaramiwitos(amiwitosindice);
             // COMPROBBAR EVENTO
             gp.evento.comprobarevento();
+            gp.keyH.enterp = false;
             if(colisioon == false){
                 switch (direccion){
                     case "up": mundoy -= velocidad; break;
@@ -119,7 +120,6 @@ public class jugador extends entidad{
                 gp.amiwitos[i].hablar();
             }
         }
-        gp.keyH.enterp = false;
     }
     public void dibujar(Graphics2D g2){
         BufferedImage imagen=null;
