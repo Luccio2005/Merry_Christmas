@@ -124,4 +124,9 @@ public class UI {
         int x = gp.anchoPantalla/2 - length/2;
         return x;
     }
+    public int getxforAligntorighttext(String texto, int tailx){
+        int length = (int)g2.getFontMetrics().getStringBounds(texto,g2).getWidth();
+        int x = tailx - length;
+        return x;
+    }
 }
