@@ -18,6 +18,23 @@ public class Teclado implements KeyListener {
         int codigo = e.getKeyCode();
         //pantalla de inicio
         if(gp.estadodeljuego == gp.pantalladeinicio){
+            pantalladeinicio(codigo);
+        }
+        //reanudar
+        if(gp.estadodeljuego == gp.reanudar){
+            reanudar(codigo);
+        }
+        // dialogo estado
+        else if(gp.estadodeljuego == gp.dialogo){
+            dialogo(codigo);
+        }
+        // estado de personaje
+        else if(gp.estadodeljuego == gp.estadodepersonaje){
+            estadodepersonaje(codigo);
+        }
+
+    }
+    public void pantalladeinicio(int codigo){
             if(codigo == KeyEvent.VK_W){
                 gp.ui.numerodecomando--;
                 if(gp.ui.numerodecomando <0){
@@ -42,8 +59,7 @@ public class Teclado implements KeyListener {
                 }
             }
         }
-        //reanudar
-        if(gp.estadodeljuego == gp.reanudar){
+    public void reanudar(int codigo){
             if(codigo == KeyEvent.VK_W){
                 arribap = true;
             }
@@ -59,16 +75,21 @@ public class Teclado implements KeyListener {
             if(codigo == KeyEvent.VK_ENTER){
                 enterp = true;
             }
-        }
-        // dialogo estado
-        else if(gp.estadodeljuego == gp.dialogo){
-            if(codigo == KeyEvent.VK_ENTER){
-                enterp = true;
-                //gp.estadodeljuego = gp.reanudar;
+            if(codigo == KeyEvent.VK_C){
+                gp.estadodeljuego = gp.estadodepersonaje;
             }
         }
+    public void dialogo(int codigo){
+        if(codigo == KeyEvent.VK_ENTER){
+            enterp = true;
+            //gp.estadodeljuego = gp.reanudar;
+        }
     }
-
+    public void estadodepersonaje(int codigo){
+        if(codigo == KeyEvent.VK_C){
+            gp.estadodeljuego = gp.reanudar;
+        }
+    }
     @Override
     public void keyReleased(KeyEvent e) {
         int codigo = e.getKeyCode();

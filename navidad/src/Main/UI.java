@@ -33,6 +33,11 @@ public class UI {
         if(gp.estadodeljuego == gp.dialogo){
             dibujarpantalladedialogo();
         }
+        // estado de personaje
+        if(gp.estadodeljuego == gp.estadodepersonaje){
+            //dibujarpantalladepersonaje();
+            //dibujarinventario(gp.jugador, true);
+        }
     }
     public void dibujarpantalladeinicio(){
         g2.setColor(new Color(70,120,80));

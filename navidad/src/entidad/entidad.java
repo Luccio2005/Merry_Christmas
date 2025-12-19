@@ -12,23 +12,25 @@ import java.util.Random;
 
 public class entidad {
     Panel_de_Juego gp;
-    public int mundox,mundoy;
-    public int velocidad;
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
     public BufferedImage imagen, imagen2, imagen3;
-    public String direccion = "down";
-
-    //contador
-    public int contadorSprite=0;
-    public int numeroSprite=1;
     public Rectangle areadecolision = new Rectangle(0,0,165,165);
     public int areadecolisionx, areadecolisiony;
-    public boolean colisioon = false;
-    public String dialogos[]= new String[20];
-    public int indicededialogos = 0;
-    //public BufferedImage imagen;
-    public String nombre;
     public boolean colision = false;
+    public String dialogos[]= new String[20];
+    //estados
+    public int mundox,mundoy;
+    public String direccion = "down";
+    public int numeroSprite=1;
+    public int indicededialogos = 0;
+    public boolean colisioon = false;
+    //contador
+    public int contadorSprite=0;
+    // atributos
+    public String nombre;
+    public int velocidad;
+    //public BufferedImage imagen;
+    
     /*
 
 

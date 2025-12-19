@@ -57,7 +57,7 @@ public class jugador extends entidad{
     }
     public void actualizar(){
         if(keyH.arribap == true || keyH.abajop == true ||
-        keyH.izquierdap == true || keyH.derechap == true){
+        keyH.izquierdap == true || keyH.derechap == true || keyH.enterp == true){
             if(keyH.arribap == true){
                 direccion = "up";
             }else if(keyH.abajop == true){
@@ -78,8 +78,8 @@ public class jugador extends entidad{
             interactuaramiwitos(amiwitosindice);
             // COMPROBBAR EVENTO
             gp.evento.comprobarevento();
-            gp.keyH.enterp = false;
-            if(colisioon == false){
+
+            if(colisioon == false && keyH.enterp == false){
                 switch (direccion){
                     case "up": mundoy -= velocidad; break;
                     case "down": mundoy += velocidad; break;
@@ -87,6 +87,7 @@ public class jugador extends entidad{
                     case "right": mundox += velocidad; break;
                 }
             }
+            gp.keyH.enterp = false;
             contadorSprite++;
             if(contadorSprite > 12){
                 if(numeroSprite == 1){

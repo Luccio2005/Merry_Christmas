@@ -47,6 +47,7 @@ public class Panel_de_Juego extends JPanel implements Runnable{
     public final int reanudar = 1;
     public final int pausar = 2;
     public final int dialogo = 3;
+    public final int estadodepersonaje = 4;
 
 
 
@@ -168,9 +169,7 @@ public class Panel_de_Juego extends JPanel implements Runnable{
                 listaentidad.get(i).dibujar(g2);
             }
             //vaciar lista entidad
-            for(int i = 0; i< listaentidad.size();i++){
-                listaentidad.remove(i);
-            }
+            listaentidad.clear();
             ui.dibujar(g2);
         }
 
