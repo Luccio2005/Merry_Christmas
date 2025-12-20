@@ -29,6 +29,7 @@ public class entidad {
     // atributos
     public String nombre;
     public int velocidad;
+    public String descripcion = "";
     //public BufferedImage imagen;
     
     /*

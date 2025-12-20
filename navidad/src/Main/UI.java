@@ -1,5 +1,7 @@
 package Main;
 
+import entidad.entidad;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -12,6 +14,8 @@ public class UI {
     public boolean juegoterminado = false;
     public String dialogoactual="";
     public int numerodecomando = 0;
+    public int ranuracol = 0;
+    public int ranurafila = 0;
 
     public  UI(Panel_de_Juego gp){
         this.gp = gp;
@@ -36,7 +40,7 @@ public class UI {
         // estado de personaje
         if(gp.estadodeljuego == gp.estadodepersonaje){
             //dibujarpantalladepersonaje();
-            //dibujarinventario(gp.jugador, true);
+            dibujarinventario();
         }
     }
     public void dibujarpantalladeinicio(){
@@ -108,6 +112,119 @@ public class UI {
         for(String line: dialogoactual.split("\n")){
             g2.drawString(line,x,y);
 
+        }*/
+    }
+    public void dibujarinventario(/*entidad entidad, boolean cursor*/){
+        int framex = gp.tileSize*4;
+        int framey = gp.tileSize;
+        int frameancho = (int)(gp.tileSize*2.2);
+        int framealto = (int)(gp.tileSize*2.2);
+        dibujarpestana(framex,framey,frameancho,framealto);
+        // slot
+        final int ranuraxstart = framex +20;
+        final int ranuraystart = framey +20;
+        int ranurax = ranuraxstart;
+        int ranuray = ranuraystart;
+        // dibujar items jugador
+        for(int i = 0; i< gp.jugador.inventario.size();i++){
+            g2.drawImage(gp.jugador.inventario.get(i).down1,ranurax,ranuray,null);
+            ranurax += gp.tileSize;
+            if(i==1){
+                ranurax = ranuraxstart;
+                ranuray += gp.tileSize;
+            }
+        }
+
+        // cursor
+        int cursorx = ranuraxstart + (gp.tileSize * ranuracol);
+        int cursory = ranuraystart + (gp.tileSize * ranurafila);
+        int anchocursor = gp.tileSize;
+        int altocursor = gp.tileSize;
+        // dibujar cursor
+        g2.setColor(Color.white);
+        g2.setStroke(new BasicStroke(3));
+        g2.drawRoundRect(cursorx,cursory, anchocursor,altocursor, 10,10);
+        /*int framex = 0;
+        int framey = 0;
+        int frameancho = 0;
+        int framealto = 0;
+        int ranuracol = 0;
+        int ranurafila = 0;
+        if(entidad == gp.jugador){
+            framex = gp.tileSize * 12;
+            framey = gp.tileSize;
+            frameancho = gp.tileSize * 6;
+            framealto = gp.tileSize * 5;
+            ranuracol = jugadorranuracol;
+            ranurafila = jugadorranurafila;
+        }else{
+            framex = gp.tileSize * 2;
+            framey = gp.tileSize;
+            frameancho = gp.tileSize * 6;
+            framealto = gp.tileSize * 5;
+            ranuracol = npcranuracol;
+            ranurafila = npcranurafila;
+        }
+        //frame
+        dibujarpestana(framex, framey, frameancho, framealto);
+
+        int tamanoranura = gp.tileSize+3;
+        // dibujar items
+        for(int i = 0; i< entidad.inventario.size();i++){
+            //equipar cursor
+            if(entidad.inventario.get(i) == entidad.actualarma ||
+                    entidad.inventario.get(i) == entidad.actualescudo ||
+                    entidad.inventario.get(i) == entidad.actualluz){
+                g2.setColor(new Color(240,190,90));
+                g2.fillRoundRect(ranurax, ranuray, gp.tileSize, gp.tileSize, 10, 10);
+            }
+            g2.drawImage(entidad.inventario.get(i).down1,ranurax,ranuray,null);
+            // display amount
+            if(entidad == gp.jugador && entidad.inventario.get(i).amount > 1){
+                g2.setFont(g2.getFont().deriveFont(32f));
+                int amountx;
+                int amounty;
+
+                String s = "" + entidad.inventario.get(i).amount;
+                amountx = getxforAligntorighttext(s, ranurax + 44);
+                amounty = ranuray + gp.tileSize;
+                // sombra
+                g2.setColor(new Color(60,60,60));
+                g2.drawString(s, amountx -3, amounty-3);
+                //numero
+                g2.setColor(Color.white);
+                g2.drawString(s, amountx -3, amounty -3);
+            }
+            ranurax += tamanoranura;
+            if(i==4 || i==9 || i==14){
+                ranurax = ranuraxstart;
+                ranuray += tamanoranura;
+            }
+        }
+        //cursor
+        if(cursor == true){
+
+            //dibujar cursor
+            g2.setColor(Color.white);
+            g2.setStroke(new BasicStroke(3));
+            g2.drawRoundRect(cursorx, cursory, anchocursor, altocursor,10, 10);
+            // descripcion ventana
+            int dframex = framex;
+            int dframey = framey + framealto;
+            int dframeancho = frameancho;
+            int dframealto = gp.tileSize*3;
+            // dibujar texto de descripcion
+            int textox = dframex +20;
+            int textoy = dframey +gp.tileSize;
+            g2.setFont(g2.getFont().deriveFont(28F));
+            int indiceitem = getitemindexonslot(ranuracol, ranurafila);
+            if(indiceitem < entidad.inventario.size()){
+                dibujarpestana(dframex,dframey,dframeancho,dframealto);
+                for(String linea: entidad.inventario.get(indiceitem).descripcion.split("\n")){
+                    g2.drawString(linea,textox,textoy);
+                    textoy +=32;
+                }
+            }
         }*/
     }
     public void dibujarpestana(int x, int y, int ancho, int alto){

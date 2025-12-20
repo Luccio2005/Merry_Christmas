@@ -3,11 +3,13 @@ package entidad;
 import Main.Herramientasdeutilidad;
 import Main.Panel_de_Juego;
 import Main.Teclado;
+import objeto.Obj_estrella;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class jugador extends entidad{
     Teclado keyH;
@@ -15,6 +17,8 @@ public class jugador extends entidad{
 
     //public final int pantallax;
     //public final int pantallay;
+    public ArrayList<entidad> inventario= new ArrayList<>();
+    public final int tamanoinventario = 20;
 
     public jugador(Panel_de_Juego gp, Teclado keyH){
         super(gp);
@@ -29,6 +33,7 @@ public class jugador extends entidad{
         areadecolision.height = 10;
         valorespredeterminados();
         getPlayerImage();
+        setItems();
 
         /*pantallax = gp.anchoPantalla/2 - (gp.tileSize/2);
         pantallay = gp.altoPantalla/2 - (gp.tileSize/2);
@@ -44,6 +49,11 @@ public class jugador extends entidad{
         mundoy= gp.tileSize * 49;
         velocidad=6;
         */
+    }
+    public void setItems(){
+        inventario.clear();
+
+        inventario.add(new Obj_estrella(gp));
     }
     public void getPlayerImage(){
         up1 = setup("/jugador/player-3");

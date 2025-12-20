@@ -8,5 +8,6 @@ public class Obj_estrella extends entidad{
         super(gp);
         nombre = "estrella";
         down1 = setup("/objetos/estrella");
+        descripcion = "["+nombre+"]\nIlumina en la oscurdad mas profunda";
     }
 }

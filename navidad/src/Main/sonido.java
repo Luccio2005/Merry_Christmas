@@ -13,6 +13,7 @@ public class sonido {
     public sonido(){
         Urlsonido[0]= getClass().getResource("/sonido/Exo.wav");
         Urlsonido[1]= getClass().getResource("/sonido/star.wav");
+        Urlsonido[2]= getClass().getResource("/sonido/cursor.wav");
     }
     public void setFile(int i){
         try {

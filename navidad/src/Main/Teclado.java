@@ -89,6 +89,30 @@ public class Teclado implements KeyListener {
         if(codigo == KeyEvent.VK_C){
             gp.estadodeljuego = gp.reanudar;
         }
+        if(codigo == KeyEvent.VK_W){
+            if(gp.ui.ranurafila !=0){
+                gp.ui.ranurafila--;
+                gp.playSE(2);
+            }
+        }
+        if(codigo == KeyEvent.VK_A){
+            if(gp.ui.ranuracol !=0){
+                gp.ui.ranuracol--;
+                gp.playSE(2);
+            }
+        }
+        if(codigo == KeyEvent.VK_S){
+            if(gp.ui.ranurafila !=1) {
+                gp.ui.ranurafila++;
+                gp.playSE(2);
+            }
+        }
+        if(codigo == KeyEvent.VK_D){
+            if(gp.ui.ranuracol !=1) {
+                gp.ui.ranuracol++;
+                gp.playSE(2);
+            }
+        }
     }
     @Override
     public void keyReleased(KeyEvent e) {
