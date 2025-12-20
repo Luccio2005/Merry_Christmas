@@ -116,7 +116,7 @@ public class UI {
     }
     public void dibujarinventario(/*entidad entidad, boolean cursor*/){
         int framex = gp.tileSize*4;
-        int framey = gp.tileSize;
+        int framey = gp.tileSize/2;
         int frameancho = (int)(gp.tileSize*2.2);
         int framealto = (int)(gp.tileSize*2.2);
         dibujarpestana(framex,framey,frameancho,framealto);
@@ -144,6 +144,23 @@ public class UI {
         g2.setColor(Color.white);
         g2.setStroke(new BasicStroke(3));
         g2.drawRoundRect(cursorx,cursory, anchocursor,altocursor, 10,10);
+        // descripcion ventana
+        int dframex = framex;
+        int dframey = framey + framealto;
+        int dframeancho = frameancho;
+        int dframealto = gp.tileSize*4/5;
+        dibujarpestana(dframex, dframey, dframeancho, dframealto);
+        // dibujar teto descripcion
+        int textox = dframex + 20;
+        int textoy = dframey + 40;
+        g2.setFont(g2.getFont().deriveFont(28F));
+        int indiceitem = getitemindexonslot();
+        if(indiceitem < gp.jugador.inventario.size()){
+            for(String linea: gp.jugador.inventario.get(indiceitem).descripcion.split("\n")){
+                g2.drawString(linea,textox,textoy);
+                textoy += 32;
+            }
+        }
         /*int framex = 0;
         int framey = 0;
         int frameancho = 0;
@@ -218,14 +235,12 @@ public class UI {
             int textoy = dframey +gp.tileSize;
             g2.setFont(g2.getFont().deriveFont(28F));
             int indiceitem = getitemindexonslot(ranuracol, ranurafila);
-            if(indiceitem < entidad.inventario.size()){
-                dibujarpestana(dframex,dframey,dframeancho,dframealto);
-                for(String linea: entidad.inventario.get(indiceitem).descripcion.split("\n")){
-                    g2.drawString(linea,textox,textoy);
-                    textoy +=32;
-                }
-            }
+
         }*/
+    }
+    public int getitemindexonslot(/*int ranuracol, int ranurafila*/){
+        int indiceitem = ranuracol + (ranurafila*2);
+        return indiceitem;
     }
     public void dibujarpestana(int x, int y, int ancho, int alto){
         Color c = new Color(0,0,0, 210);
