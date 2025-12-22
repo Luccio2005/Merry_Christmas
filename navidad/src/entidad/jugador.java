@@ -17,8 +17,7 @@ public class jugador extends entidad{
 
     //public final int pantallax;
     //public final int pantallay;
-    public ArrayList<entidad> inventario= new ArrayList<>();
-    public final int tamanoinventario = 20;
+
 
     public jugador(Panel_de_Juego gp, Teclado keyH){
         super(gp);

@@ -19,6 +19,8 @@ public class aby extends entidad{
         dialogos[1] = null;
     }
     public void hablar(){
+
         super.hablar();
+        gp.estadodeljuego = gp.estadointercambio;
     }
 }

@@ -31,6 +31,8 @@ public class entidad {
     public int velocidad;
     public String descripcion = "";
     //public BufferedImage imagen;
+    public ArrayList<entidad> inventario= new ArrayList<>();
+    public final int tamanoinventario = 20;
     //tipo
     public int tipo;
     public final int tipo_jugador = 0;

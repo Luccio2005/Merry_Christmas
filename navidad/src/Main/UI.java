@@ -16,6 +16,7 @@ public class UI {
     public int numerodecomando = 0;
     public int ranuracol = 0;
     public int ranurafila = 0;
+    public int substate = 0;
 
     public  UI(Panel_de_Juego gp){
         this.gp = gp;
@@ -40,7 +41,11 @@ public class UI {
         // estado de personaje
         if(gp.estadodeljuego == gp.estadodepersonaje){
             //dibujarpantalladepersonaje();
-            dibujarinventario();
+            dibujarinventario(gp.jugador, true);
+        }
+        // estado de ntercambio
+        if(gp.estadodeljuego == gp.estadointercambio){
+            dibujarpantalladeintercambio();
         }
     }
     public void dibujarpantalladeinicio(){
@@ -114,7 +119,7 @@ public class UI {
 
         }*/
     }
-    public void dibujarinventario(/*entidad entidad, boolean cursor*/){
+    public void dibujarinventario(entidad entidad, boolean cursor){
         int framex = gp.tileSize*4;
         int framey = gp.tileSize/2;
         int frameancho = (int)(gp.tileSize*2.2);
@@ -238,6 +243,22 @@ public class UI {
 
         }*/
     }
+    public void dibujarpantalladeintercambio(){
+        dibujarinventario(gp.jugador, true);
+        int indiceitem = getitemindexonslot();
+        // vender item
+        if(gp.keyH.enterp == true) {
+            gp.jugador.inventario.remove(indiceitem);
+            gp.estrellasentregadas++;
+            gp.entidadDialogoactual.indicededialogos = 0;
+            gp.estadodeljuego = gp.dialogo;
+
+            gp.keyH.enterp = false;
+
+        }
+
+    }
+
     public int getitemindexonslot(/*int ranuracol, int ranurafila*/){
         int indiceitem = ranuracol + (ranurafila*2);
         return indiceitem;

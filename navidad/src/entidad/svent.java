@@ -20,6 +20,8 @@ public class svent extends entidad{
 
     }
     public void hablar(){
+
         super.hablar();
+        gp.estadodeljuego = gp.estadointercambio;
     }
 }

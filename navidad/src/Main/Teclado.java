@@ -33,6 +33,10 @@ public class Teclado implements KeyListener {
         else if(gp.estadodeljuego == gp.estadodepersonaje){
             estadodepersonaje(codigo);
         }
+        // estado de intercambio
+        else if(gp.estadodeljuego == gp.estadointercambio){
+            estadointercambio(codigo);
+        }
 
     }
     public void pantalladeinicio(int codigo){
@@ -114,9 +118,16 @@ public class Teclado implements KeyListener {
                 gp.playSE(2);
             }
         }
+        //if(codigo == KeyEvent.VK_ENTER){
+          //  gp.jugador.seleccionaritem();
+       // }
+    }
+    public void estadointercambio(int codigo){
         if(codigo == KeyEvent.VK_ENTER){
-            gp.jugador.seleccionaritem();
+            enterp = true;
         }
+        estadodepersonaje(codigo);
+
     }
     @Override
     public void keyReleased(KeyEvent e) {

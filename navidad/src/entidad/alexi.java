@@ -19,6 +19,8 @@ public class alexi extends entidad{
 
     }
     public void hablar(){
+
         super.hablar();
+        gp.estadodeljuego = gp.estadointercambio;
     }
 }
