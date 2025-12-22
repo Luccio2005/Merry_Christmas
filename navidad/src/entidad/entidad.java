@@ -31,6 +31,13 @@ public class entidad {
     public int velocidad;
     public String descripcion = "";
     //public BufferedImage imagen;
+    //tipo
+    public int tipo;
+    public final int tipo_jugador = 0;
+    public final int tipo_npc = 1;
+    public final int tipo_consumible = 6;
+    public final int tipo_agarrarsolo = 7;
+    public final int tipo_obstaculo = 8;
     
     /*
 
@@ -61,13 +68,7 @@ public class entidad {
     public boolean stackable = false;
     public int amount = 1;
 
-    //tipo
-    public int tipo;
-    public final int tipo_jugador = 0;
-    public final int tipo_npc = 1;
-    public final int tipo_consumible = 6;
-    public final int tipo_agarrarsolo = 7;
-    public final int tipo_obstaculo = 8;
+
 */
     public entidad(Panel_de_Juego gp){
         this.gp = gp;
@@ -80,6 +81,9 @@ public class entidad {
         }
         gp.ui.dialogoactual = dialogos[indicededialogos];
         indicededialogos++;
+    }
+    public boolean usar(entidad entidad){
+        return false;
     }
     public void actualizar(){
         setaction();

@@ -1,7 +1,9 @@
 package Main;
 
 import entidad.aby;
+import entidad.alexi;
 import entidad.ann;
+import entidad.svent;
 import objeto.Obj_estrella;
 
 public class Activos {
@@ -36,6 +38,14 @@ public class Activos {
         i++;
         gp.amiwitos[i]= new aby(gp);
         gp.amiwitos[i].mundox = 2*gp.tileSize;
+        gp.amiwitos[i].mundoy = gp.tileSize;
+        i++;
+        gp.amiwitos[i]= new alexi(gp);
+        gp.amiwitos[i].mundox = 4*gp.tileSize;
+        gp.amiwitos[i].mundoy = gp.tileSize;
+        i++;
+        gp.amiwitos[i]= new svent(gp);
+        gp.amiwitos[i].mundox = 5*gp.tileSize;
         gp.amiwitos[i].mundoy = gp.tileSize;
         i++;
     }

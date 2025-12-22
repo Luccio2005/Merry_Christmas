@@ -52,8 +52,7 @@ public class jugador extends entidad{
     }
     public void setItems(){
         inventario.clear();
-
-        inventario.add(new Obj_estrella(gp));
+        //inventario.add(new Obj_estrella(gp));
     }
     public void getPlayerImage(){
         up1 = setup("/jugador/player-3");
@@ -112,6 +111,11 @@ public class jugador extends entidad{
     }
     public void recogerobjeto(int i){
         if(i != 999){
+
+            inventario.add(gp.obj[i]);
+            gp.playSE(1);
+            gp.obj[i] = null;
+            gp.estrellasrecogidas++;
             /*String nombreobj = gp.obj[i].nombre;
             switch (nombreobj){
                 case "estrella":
@@ -129,6 +133,16 @@ public class jugador extends entidad{
                 gp.entidadDialogoactual = gp.amiwitos[i];
                 gp.amiwitos[i].indicededialogos = 0;
                 gp.amiwitos[i].hablar();
+            }
+        }
+    }
+    public void seleccionaritem(){
+        int indiceitem = gp.ui.getitemindexonslot();
+        if(indiceitem < inventario.size()){
+            entidad seleccionaritem = inventario.get(indiceitem);
+            if(seleccionaritem.tipo == tipo_consumible){
+                seleccionaritem.usar(this);
+                inventario.remove(indiceitem);
             }
         }
     }

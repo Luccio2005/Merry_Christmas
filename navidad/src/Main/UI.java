@@ -149,13 +149,13 @@ public class UI {
         int dframey = framey + framealto;
         int dframeancho = frameancho;
         int dframealto = gp.tileSize*4/5;
-        dibujarpestana(dframex, dframey, dframeancho, dframealto);
         // dibujar teto descripcion
         int textox = dframex + 20;
         int textoy = dframey + 40;
         g2.setFont(g2.getFont().deriveFont(28F));
         int indiceitem = getitemindexonslot();
         if(indiceitem < gp.jugador.inventario.size()){
+            dibujarpestana(dframex, dframey, dframeancho, dframealto);
             for(String linea: gp.jugador.inventario.get(indiceitem).descripcion.split("\n")){
                 g2.drawString(linea,textox,textoy);
                 textoy += 32;

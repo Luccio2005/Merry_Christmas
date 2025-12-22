@@ -2,6 +2,7 @@ package Main;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.security.Key;
 
 public class Teclado implements KeyListener {
     Panel_de_Juego gp;
@@ -112,6 +113,9 @@ public class Teclado implements KeyListener {
                 gp.ui.ranuracol++;
                 gp.playSE(2);
             }
+        }
+        if(codigo == KeyEvent.VK_ENTER){
+            gp.jugador.seleccionaritem();
         }
     }
     @Override
