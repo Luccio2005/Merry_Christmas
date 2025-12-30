@@ -109,8 +109,8 @@ public class UI {
         int textox = x+40;
         int textoy = y+60;
         for(String line: dialogoactual.split("\n")){
-            g2.drawString(dialogoactual, textox, textoy);
-            y+= 40;
+            g2.drawString(line, textox, textoy);
+            textoy += 40;
         }
         /*
 

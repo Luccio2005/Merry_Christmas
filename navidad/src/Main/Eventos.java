@@ -37,7 +37,7 @@ public class Eventos {
             cantouchevent = true;
         }
         if(cantouchevent == true){
-        if(hit(3,2,"down") == true){
+        if(gp.estrellasentregadas == 4 && hit(3,2,"down") == true){
             dialogofinal(3,2,gp.dialogo);
         }}
     }
@@ -62,14 +62,20 @@ public class Eventos {
             return hit;
     }
     public void dialogofinal(int col, int fila, int estadodeljuego){
+
         gp.estadodeljuego = estadodeljuego;
         gp.entidadDialogoactual = gp.jugador;
-        gp.jugador.dialogos[0] = "Jueliz Navidad TONOTOS!!!";
-        gp.jugador.dialogos[1] = ".....";
-        gp.jugador.dialogos[2] = "******";
-        gp.jugador.dialogos[3] = "......";
-        gp.jugador.dialogos[4] = "******";
-        gp.jugador.dialogos[5] = null;
+        int i=0;
+        gp.jugador.dialogos[i++] = "Feliz (casi :p)Navidad TONOTOS!!!";
+        gp.jugador.dialogos[i++] = "gracias por haberme ofrecido su \namistad";
+        gp.jugador.dialogos[i++] = "ustedes son parte de la luz q \nilumina mi vida";
+        gp.jugador.dialogos[i++] = "gracias por todas las bonitas \nexperiencias q compartimos";
+        gp.jugador.dialogos[i++] = "los admiro mucho por su dedicacion \ny esfuerzos en la obra";
+        gp.jugador.dialogos[i++] = "sigan adelante, a pesar de todo, \nconfien siempre en Dios";
+        gp.jugador.dialogos[i++] = "mi deseo es q siempre sean \nprotegidos en donde sea q vayan";
+        gp.jugador.dialogos[i++] = "los quiero mucho ";
+        gp.jugador.dialogos[i++] = "los quiero mucho ";
+        gp.jugador.dialogos[i] = null;
 
         gp.jugador.indicededialogos =0;
         gp.jugador.hablar();
